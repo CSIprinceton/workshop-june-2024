@@ -1,0 +1,16 @@
+layers:
+- 2
+- 24
+- 12
+- 1
+n_cvs: 1
+n_states: 2
+options: null
+postprocessing: null
+preprocessing: null
+target_centers:
+- -7
+- 7
+target_sigmas:
+- 0.2
+- 0.2

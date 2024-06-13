@@ -1,0 +1,34 @@
+alpha: 10
+cell: null
+delta_f: 0
+gamma: 10000
+layers:
+- 2
+- 20
+- 20
+- 1
+mass: !!python/object/apply:torch._utils._rebuild_tensor_v2
+- !!python/object/apply:torch.storage._load_from_bytes
+  - !!binary |
+    gAKKCmz8nEb5IGqoUBkugAJN6QMugAJ9cQAoWBAAAABwcm90b2NvbF92ZXJzaW9ucQFN6QNYDQAA
+    AGxpdHRsZV9lbmRpYW5xAohYCgAAAHR5cGVfc2l6ZXNxA31xBChYBQAAAHNob3J0cQVLAlgDAAAA
+    aW50cQZLBFgEAAAAbG9uZ3EHSwR1dS6AAihYBwAAAHN0b3JhZ2VxAGN0b3JjaApGbG9hdFN0b3Jh
+    Z2UKcQFYCgAAADEwODY3NjMzOTJxAlgDAAAAY3B1cQNLAk50cQRRLoACXXEAWAoAAAAxMDg2NzYz
+    MzkycQFhLgIAAAAAAAAAAACAPwAAgD8=
+- 0
+- !!python/tuple
+  - 2
+- !!python/tuple
+  - 1
+- false
+- !!python/object/apply:collections.OrderedDict
+  - []
+options:
+  lr_scheduler:
+    gamma: 0.99999
+    scheduler: !!python/name:torch.optim.lr_scheduler.ExponentialLR ''
+  optimizer:
+    lr: 0.001
+    weight_decay: 1.0e-05
+postprocessing: null
+preprocessing: null
