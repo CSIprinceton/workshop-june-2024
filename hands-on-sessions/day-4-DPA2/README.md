@@ -58,11 +58,11 @@ $ cd ./zero-sho
 $ sbatch ./run.slurm
 # Wait few minutes for the job to finish...
 $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
-[2024-06-18 17:39:55,496] DEEPMD INFO    Force  RMSE        : 1.568359e-01 eV/A  # classical_ice
-[2024-06-18 17:40:21,248] DEEPMD INFO    Force  RMSE        : 1.983394e+00 eV/A  # classical_liq
-[2024-06-18 17:40:57,359] DEEPMD INFO    Force  RMSE        : 1.651158e-01 eV/A  # quantum_ice
-[2024-06-18 17:41:27,344] DEEPMD INFO    Force  RMSE        : 1.730639e-01 eV/A  # quantum_liq
-[2024-06-18 17:41:27,345] DEEPMD INFO    Force  RMSE        : 6.493739e-01 eV/A  # <- weighted error on the entire dataset
+DEEPMD INFO    Force  RMSE        : 1.568359e-01 eV/A  # classical_ice
+DEEPMD INFO    Force  RMSE        : 1.983394e+00 eV/A  # classical_liq
+DEEPMD INFO    Force  RMSE        : 1.651158e-01 eV/A  # quantum_ice
+DEEPMD INFO    Force  RMSE        : 1.730639e-01 eV/A  # quantum_liq
+DEEPMD INFO    Force  RMSE        : 6.493739e-01 eV/A  # <- weighted error on the entire dataset
 ```
 
 > [!NOTE]
@@ -70,20 +70,35 @@ $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
 > in the slurm.out. This is due to the large cutoff of 9 Angstrom used in DPA2.
 
 As DPA2 is trained in a multi-task manner, it contains several task heads while uses a shared descriptor. 
-Each head corresponds to one fitting_net for a dataset. Here, we use the `H2O_H2O-PD` head, the fitting_net of 
-which is trained on a dataset by VASP at SCAN. Since there is a large difference in the total energy by VASP and CP2K,
+Each head corresponds to one fitting_net for a dataset. Here, we use the `H2O_H2O-PD` head (command option `-m H2O_H2O-PD`), 
+the fitting_net of which is trained on a dataset by VASP at SCAN.[2] Since there is a large difference in the total energy by VASP and CP2K,
 we may expect a large error in energy by DPA2 for our dataset.
 
 > [!TIP]
 > You may test DPA2 with other heads, for example, `H2O-PBE0TS`.
 
-# Fine-tune
+# (Single-Task) Fine-tune
+Fine-tune is a method to train a small fraction of parameters of a large model to improve the performance on a specific dataset.
+For the DPA2 architecture, the descriptor parameters are frozen (pretrained on multiple datasets) and only fitting_net parameters
+are updated during the fine-tuning.
+Here, we train DPA2 on our dataset for 10_000 steps (numb_steps in input.json) based on the `H2O_H2O-PD` head.
+The force_rmse for all systems are significantly improved after a small numb_steps.
+
 ```
 $ cd ./fine-tune
 $ sbatch ./run.slurm
 # Wait few minutes for the job to finish...
 $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
+DEEPMD INFO    Force  RMSE        : 2.589388e-02 eV/A
+DEEPMD INFO    Force  RMSE        : 1.625268e-01 eV/A
+DEEPMD INFO    Force  RMSE        : 3.390621e-02 eV/A
+DEEPMD INFO    Force  RMSE        : 4.319233e-02 eV/A
+DEEPMD INFO    Force  RMSE        : 6.319815e-02 eV/A
 ```
+
+> [!NOTE]
+> Besides the single-task fine-tune, you may train your target dataset with a dataset used in the pretraining to avoid overfitting, which
+> is called multi-task fine-tune. See the [DPA-2.1.0-2024Q1](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.1.0-2024Q1&id=244) report for more information.
 
 # (Optional) Molecular Dynamics
 
@@ -91,3 +106,4 @@ $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
 
 # References
 [1] Zhang, Duo, et al. "DPA-2: Towards a universal large atomic model for molecular and material simulation." arXiv preprint arXiv:2312.15492 (2023).
+[2] Zhang, Linfeng, et al. "Phase diagram of a deep potential water model." Physical review letters 126.23 (2021): 236001.
