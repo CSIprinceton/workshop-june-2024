@@ -67,7 +67,15 @@ $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
 
 > [!NOTE]
 > You may see something like `DEEPMD WARNING sel of type 0 is not enough! The expected value is not less than 343, but you set it to 120.`
-> in the slurm-<YOUR-JOBID>.out. This is due to the large cutoff of 9 Angstrom used in DPA2.
+> in the slurm.out. This is due to the large cutoff of 9 Angstrom used in DPA2.
+
+As DPA2 is trained in a multi-task manner, it contains several task heads while uses a shared descriptor. 
+Each head corresponds to one fitting_net for a dataset. Here, we use the `H2O_H2O-PD` head, the fitting_net of 
+which is trained on a dataset by VASP at SCAN. Since there is a large difference in the total energy by VASP and CP2K,
+we may expect a large error in energy by DPA2 for our dataset.
+
+> [!TIP]
+> You may test DPA2 with other heads, for example, `H2O-PBE0TS`.
 
 # Fine-tune
 ```
