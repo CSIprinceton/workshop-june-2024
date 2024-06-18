@@ -39,11 +39,36 @@ $ tree ./assets/dataset -L 2
 └── quantum_liq
 ```
 
-# Zero-shot Learning
+# Test se_a
+```
+$ cd ./test-sea
+$ sbatch ./run.slurm
+# Wait few minutes for the job to finish...
+$ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
+```
+
+# Zero-shot
+```
+$ cd ./zero-sho
+$ sbatch ./run.slurm
+# Wait few minutes for the job to finish...
+$ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
+[2024-06-18 17:39:55,496] DEEPMD INFO    Force  RMSE        : 1.568359e-01 eV/A  # classical_ice
+[2024-06-18 17:40:21,248] DEEPMD INFO    Force  RMSE        : 1.983394e+00 eV/A  # classical_liq
+[2024-06-18 17:40:57,359] DEEPMD INFO    Force  RMSE        : 1.651158e-01 eV/A  # quantum_ice
+[2024-06-18 17:41:27,344] DEEPMD INFO    Force  RMSE        : 1.730639e-01 eV/A  # quantum_liq
+[2024-06-18 17:41:27,345] DEEPMD INFO    Force  RMSE        : 6.493739e-01 eV/A  # <- weighted error on the entire dataset
+```
 
 # Fine-tune
+```
+$ cd ./fine-tune
+$ sbatch ./run.slurm
+# Wait few minutes for the job to finish...
+$ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
+```
 
-# Benchmark
+# Summary
 
 # References
 [1] Zhang, Duo, et al. "DPA-2: Towards a universal large atomic model for molecular and material simulation." arXiv preprint arXiv:2312.15492 (2023).
