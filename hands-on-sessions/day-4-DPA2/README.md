@@ -40,6 +40,8 @@ $ tree ./assets/dataset -L 2
 ```
 
 # Test se_a
+Before diving into DPA2, we can first test a well-established DP model using the se_a descripter
+trained by an active learning workflow, which serves as our baseline model here.
 ```
 $ cd ./test-sea
 $ sbatch ./run.slurm
@@ -48,6 +50,9 @@ $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
 ```
 
 # Zero-shot
+Zero-shot is a method to test the LAM's generalization. In this scenario, we train the DPA2 for ZERO
+step, which only adjusts the energy_bias in the fitting_net that maps the pretrained descripter to the atomic energy.
+
 ```
 $ cd ./zero-sho
 $ sbatch ./run.slurm
@@ -60,6 +65,10 @@ $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
 [2024-06-18 17:41:27,345] DEEPMD INFO    Force  RMSE        : 6.493739e-01 eV/A  # <- weighted error on the entire dataset
 ```
 
+> [!NOTE]
+> You may see something like `DEEPMD WARNING sel of type 0 is not enough! The expected value is not less than 343, but you set it to 120.`
+> in the slurm-<YOUR-JOBID>.out. This is due to the large cutoff of 9 Angstrom used in DPA2.
+
 # Fine-tune
 ```
 $ cd ./fine-tune
@@ -67,6 +76,8 @@ $ sbatch ./run.slurm
 # Wait few minutes for the job to finish...
 $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
 ```
+
+# (Optional) Molecular Dynamics
 
 # Summary
 
