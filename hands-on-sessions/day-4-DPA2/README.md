@@ -5,10 +5,6 @@ Hands-on sessions Day 4
 This tutorial will introduce some basic concepts of Large Atomic Model (LAM) and demonstrate how to use a 
 pretrained LAM by zero-shot and finetune. In specific, we will learn how to use the recently released DPA2 [1].
 
-# Objectives
-- Zero-shot.
-- Fine-tune.
-
 # Environment
 As DPA2 is currently only supported by the latest version of DeePMD-kit, we need download a docker image that
 prepares a necessary environment.
@@ -101,8 +97,6 @@ DEEPMD INFO    Force  RMSE        : 6.319815e-02 eV/A
 > is called multi-task fine-tune. See the [DPA-2.1.0-2024Q1](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.1.0-2024Q1&id=244) report for more information.
 
 # (Optional) Molecular Dynamics
-
-# Summary
 
 # References
 1. Zhang, Duo, et al. "DPA-2: Towards a universal large atomic model for molecular and material simulation." arXiv preprint arXiv:2312.15492 (2023).
