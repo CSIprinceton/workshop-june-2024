@@ -75,7 +75,7 @@ the fitting_net of which is trained on a dataset by VASP at SCAN.[2] Since there
 we may expect a large error in energy by DPA2 for our dataset.
 
 > [!TIP]
-> You may test DPA2 with other heads, for example, `H2O-PBE0TS`.
+> You may test DPA2 with other heads, for example, `H2O_H2O-PBE0TS`.
 
 # (Single-Task) Fine-tune
 Fine-tune is a method to train a small fraction of parameters of a large model to improve the performance on a specific dataset.
