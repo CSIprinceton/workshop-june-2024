@@ -1,0 +1,4 @@
+../assets/dataset/classical_ice
+../assets/dataset/classical_liq
+../assets/dataset/quantum_ice
+../assets/dataset/quantum_liq
