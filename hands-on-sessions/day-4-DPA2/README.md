@@ -43,6 +43,11 @@ $ cd ./test-sea
 $ sbatch ./run.slurm
 # Wait few minutes for the job to finish...
 $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
+DEEPMD INFO    Force  RMSE        : 2.580167e-02 eV/A  # classical_ice
+DEEPMD INFO    Force  RMSE        : 3.388495e-02 eV/A  # classical_liq
+DEEPMD INFO    Force  RMSE        : 3.520093e-02 eV/A  # quantum_ice
+DEEPMD INFO    Force  RMSE        : 3.964918e-02 eV/A  # quantum_liq
+DEEPMD INFO    Force  RMSE        : 3.700330e-02 eV/A  # <- weighted error on the entire dataset
 ```
 
 # Zero-shot
@@ -50,15 +55,15 @@ Zero-shot is a method to test the LAM's generalization. In this scenario, we tra
 step, which only adjusts the energy_bias in the fitting_net that maps the pretrained descripter to the atomic energy.
 
 ```
-$ cd ./zero-sho
+$ cd ./zero-shot
 $ sbatch ./run.slurm
 # Wait few minutes for the job to finish...
 $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
 DEEPMD INFO    Force  RMSE        : 1.568359e-01 eV/A  # classical_ice
-DEEPMD INFO    Force  RMSE        : 1.983394e+00 eV/A  # classical_liq
+DEEPMD INFO    Force  RMSE        : 1.684748e-01 eV/A  # classical_liq
 DEEPMD INFO    Force  RMSE        : 1.651158e-01 eV/A  # quantum_ice
 DEEPMD INFO    Force  RMSE        : 1.730639e-01 eV/A  # quantum_liq
-DEEPMD INFO    Force  RMSE        : 6.493739e-01 eV/A  # <- weighted error on the entire dataset
+DEEPMD INFO    Force  RMSE        : 1.688308e-01 eV/A  # <- weighted error on the entire dataset
 ```
 
 > [!NOTE]
