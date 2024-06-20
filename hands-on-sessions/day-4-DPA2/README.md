@@ -37,7 +37,8 @@ $ tree ./assets/dataset -L 2
 
 # Test se_a
 Before diving into DPA2, we can first test a well-established DP model using the se_a descripter
-trained by an active learning workflow, which serves as our baseline model here.
+trained by an active learning workflow, which serves as our baseline model here. 
+In practice, this se_a model was trained for at least 400_000 steps to ensure the best performance.
 ```
 $ cd ./test-sea
 $ sbatch ./run.slurm
@@ -100,6 +101,16 @@ DEEPMD INFO    Force  RMSE        : 6.319815e-02 eV/A
 > [!NOTE]
 > Besides the single-task fine-tune, you may train your target dataset with a dataset used in the pretraining to avoid overfitting, which
 > is called multi-task fine-tune. See the [DPA-2.1.0-2024Q1](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.1.0-2024Q1&id=244) report for more information.
+
+# Summary
+| Model          | Force  RMSE       | Energy RMSE/Natoms |
+| -------------- | ----------------- | ------------------ |
+| se_a           | 3.700330e-02      | 3.884332e-04       |
+| se_a (10_000)* |       |       |
+| zero_shot      | 1.688308e-02      | 3.071374e-03       |
+| fine_tune      |       |       |
+
+* You may train a se_a model in the folder `train_sea`.
 
 # (Optional) Molecular Dynamics
 
