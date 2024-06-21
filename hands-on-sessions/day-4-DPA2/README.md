@@ -19,12 +19,12 @@ $ wget https://github.com/deepmodeling/deepmd-kit/pkgs/container/deepmd-kit/2253
 
 # Dataset
 Our target dataset is H2O liquid and ice labelled by CP2K at revPBE0-D3 (1778 structures in total).
-| System Name   | Structure Number  |
-| ------------- | ----------------- |
-| classical_ice | 3                 |
-| classical_liq | 179               |
-| quantum_ice   | 847               |
-| quantum_liq   | 749               |
+| System Name   | Number of Structures |
+| ------------- | -------------------- |
+| classical_ice | 3                    |
+| classical_liq | 179                  |
+| quantum_ice   | 847                  |
+| quantum_liq   | 749                  |
 
 ```
 $ tree ./assets/dataset -L 2
@@ -99,7 +99,7 @@ DEEPMD INFO    Force  RMSE        : 3.504219e-02 eV/A  # <- weighted error on th
 ```
 
 > [!NOTE]
-> Besides the single-task fine-tune, you may train your target dataset with a dataset used in the pretraining to avoid overfitting, which
+> Besides the single-task fine-tune, you may train your target dataset together with a dataset used in the pretraining to avoid overfitting, which
 > is called multi-task fine-tune. See the [DPA-2.1.0-2024Q1](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.1.0-2024Q1&id=244) report for more information.
 
 # Summary
@@ -111,8 +111,6 @@ DEEPMD INFO    Force  RMSE        : 3.504219e-02 eV/A  # <- weighted error on th
 | fine_tune      | 3.504219e-02      | 4.102683e-04       |
 
 * You may train a se_a model in the folder `train_sea`.
-
-# (Optional) Molecular Dynamics
 
 # References
 1. Zhang, Duo, et al. "DPA-2: Towards a universal large atomic model for molecular and material simulation." arXiv preprint arXiv:2312.15492 (2023).
