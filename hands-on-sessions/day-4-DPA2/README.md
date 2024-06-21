@@ -19,12 +19,12 @@ $ wget https://github.com/deepmodeling/deepmd-kit/pkgs/container/deepmd-kit/2253
 
 # Dataset
 Our target dataset is H2O liquid and ice labelled by CP2K at revPBE0-D3 (1778 structures in total).
-| System Name   | Structure Number  |
-| ------------- | ----------------- |
-| classical_ice | 3                 |
-| classical_liq | 179               |
-| quantum_ice   | 847               |
-| quantum_liq   | 749               |
+| System Name   | Number of Structures |
+| ------------- | -------------------- |
+| classical_ice | 3                    |
+| classical_liq | 179                  |
+| quantum_ice   | 847                  |
+| quantum_liq   | 749                  |
 
 ```
 $ tree ./assets/dataset -L 2
@@ -37,12 +37,18 @@ $ tree ./assets/dataset -L 2
 
 # Test se_a
 Before diving into DPA2, we can first test a well-established DP model using the se_a descripter
-trained by an active learning workflow, which serves as our baseline model here.
+trained by an active learning workflow, which serves as our baseline model here. 
+In practice, this se_a model was trained for at least 400_000 steps to ensure the best performance.
 ```
 $ cd ./test-sea
 $ sbatch ./run.slurm
 # Wait few minutes for the job to finish...
 $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
+DEEPMD INFO    Force  RMSE        : 2.580167e-02 eV/A  # classical_ice
+DEEPMD INFO    Force  RMSE        : 3.388495e-02 eV/A  # classical_liq
+DEEPMD INFO    Force  RMSE        : 3.520093e-02 eV/A  # quantum_ice
+DEEPMD INFO    Force  RMSE        : 3.964918e-02 eV/A  # quantum_liq
+DEEPMD INFO    Force  RMSE        : 3.700330e-02 eV/A  # <- weighted error on the entire dataset
 ```
 
 # Zero-shot
@@ -50,15 +56,15 @@ Zero-shot is a method to test the LAM's generalization. In this scenario, we tra
 step, which only adjusts the energy_bias in the fitting_net that maps the pretrained descripter to the atomic energy.
 
 ```
-$ cd ./zero-sho
+$ cd ./zero-shot
 $ sbatch ./run.slurm
 # Wait few minutes for the job to finish...
 $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
 DEEPMD INFO    Force  RMSE        : 1.568359e-01 eV/A  # classical_ice
-DEEPMD INFO    Force  RMSE        : 1.983394e+00 eV/A  # classical_liq
+DEEPMD INFO    Force  RMSE        : 1.684748e-01 eV/A  # classical_liq
 DEEPMD INFO    Force  RMSE        : 1.651158e-01 eV/A  # quantum_ice
 DEEPMD INFO    Force  RMSE        : 1.730639e-01 eV/A  # quantum_liq
-DEEPMD INFO    Force  RMSE        : 6.493739e-01 eV/A  # <- weighted error on the entire dataset
+DEEPMD INFO    Force  RMSE        : 1.688308e-01 eV/A  # <- weighted error on the entire dataset
 ```
 
 > [!NOTE]
@@ -85,18 +91,26 @@ $ cd ./fine-tune
 $ sbatch ./run.slurm
 # Wait few minutes for the job to finish...
 $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
-DEEPMD INFO    Force  RMSE        : 2.589388e-02 eV/A
-DEEPMD INFO    Force  RMSE        : 1.625268e-01 eV/A
-DEEPMD INFO    Force  RMSE        : 3.390621e-02 eV/A
-DEEPMD INFO    Force  RMSE        : 4.319233e-02 eV/A
-DEEPMD INFO    Force  RMSE        : 6.319815e-02 eV/A
+DEEPMD INFO    Force  RMSE        : 2.459998e-02 eV/A  # classical_ice
+DEEPMD INFO    Force  RMSE        : 3.350353e-02 eV/A  # classical_liq
+DEEPMD INFO    Force  RMSE        : 3.102692e-02 eV/A  # quantum_ice
+DEEPMD INFO    Force  RMSE        : 3.944173e-02 eV/A  # quantum_liq
+DEEPMD INFO    Force  RMSE        : 3.504219e-02 eV/A  # <- weighted error on the entire dataset
 ```
 
 > [!NOTE]
-> Besides the single-task fine-tune, you may train your target dataset with a dataset used in the pretraining to avoid overfitting, which
+> Besides the single-task fine-tune, you may train your target dataset together with a dataset used in the pretraining to avoid overfitting, which
 > is called multi-task fine-tune. See the [DPA-2.1.0-2024Q1](https://www.aissquare.com/models/detail?pageType=models&name=DPA-2.1.0-2024Q1&id=244) report for more information.
 
-# (Optional) Molecular Dynamics
+# Summary
+| Model          | Force  RMSE       | Energy RMSE/Natoms |
+| -------------- | ----------------- | ------------------ |
+| se_a           | 3.700330e-02      | 3.884332e-04       |
+| se_a (10_000)* | 1.160228e-01      | 1.668701e-03       |
+| zero_shot      | 1.688308e-02      | 3.071374e-03       |
+| fine_tune      | 3.504219e-02      | 4.102683e-04       |
+
+* You may train a se_a model in the folder `train_sea`.
 
 # References
 1. Zhang, Duo, et al. "DPA-2: Towards a universal large atomic model for molecular and material simulation." arXiv preprint arXiv:2312.15492 (2023).

@@ -1,0 +1,70 @@
+{
+    "model": {
+        "type_map": [
+            "O",
+            "H"
+        ],
+        "descriptor": {
+            "type": "se_a",
+            "sel": [
+                50,
+                100
+            ],
+            "rcut_smth": 0.5,
+            "rcut": 6.0,
+            "neuron": [
+                25,
+                50,
+                100
+            ],
+            "resnet_dt": false,
+            "axis_neuron": 12,
+            "seed": 1
+        },
+        "fitting_net": {
+            "neuron": [
+                240,
+                240,
+                240
+            ],
+            "resnet_dt": true,
+            "seed": 1
+        }
+    },
+    "learning_rate": {
+        "type": "exp",
+        "start_lr": 0.001,
+        "stop_lr": 1e-08,
+        "decay_steps": 5000
+    },
+    "loss": {
+        "start_pref_e": 0.02,
+        "limit_pref_e": 2,
+        "start_pref_f": 1000,
+        "limit_pref_f": 1,
+        "start_pref_v": 0.0,
+        "limit_pref_v": 0.0
+    },
+    "training": {
+        "training_data": {
+            "systems": [
+                "../assets/dataset/classical_liq",
+                "../assets/dataset/classical_ice",
+                "../assets/dataset/quantum_ice",
+                "../assets/dataset/quantum_liq"
+            ],
+            "batch_size": [
+                1,
+                1,
+                1,
+                1
+            ]
+        },
+        "numb_steps": 10000,
+        "seed": 10,
+        "disp_file": "lcurve.out",
+        "disp_freq": 1000,
+        "save_freq": 100,
+        "_comment": "that's all"
+    }
+}
