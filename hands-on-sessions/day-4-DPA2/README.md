@@ -91,11 +91,11 @@ $ cd ./fine-tune
 $ sbatch ./run.slurm
 # Wait few minutes for the job to finish...
 $ grep "Force  RMSE" ./slurm-<YOUR-JOBID>.out
-DEEPMD INFO    Force  RMSE        : 2.589388e-02 eV/A
-DEEPMD INFO    Force  RMSE        : 1.625268e-01 eV/A
-DEEPMD INFO    Force  RMSE        : 3.390621e-02 eV/A
-DEEPMD INFO    Force  RMSE        : 4.319233e-02 eV/A
-DEEPMD INFO    Force  RMSE        : 6.319815e-02 eV/A
+DEEPMD INFO    Force  RMSE        : 2.459998e-02 eV/A  # classical_ice
+DEEPMD INFO    Force  RMSE        : 3.350353e-02 eV/A  # classical_liq
+DEEPMD INFO    Force  RMSE        : 3.102692e-02 eV/A  # quantum_ice
+DEEPMD INFO    Force  RMSE        : 3.944173e-02 eV/A  # quantum_liq
+DEEPMD INFO    Force  RMSE        : 3.504219e-02 eV/A  # <- weighted error on the entire dataset
 ```
 
 > [!NOTE]
@@ -108,7 +108,7 @@ DEEPMD INFO    Force  RMSE        : 6.319815e-02 eV/A
 | se_a           | 3.700330e-02      | 3.884332e-04       |
 | se_a (10_000)* | 1.160228e-01      | 1.668701e-03       |
 | zero_shot      | 1.688308e-02      | 3.071374e-03       |
-| fine_tune      |       |       |
+| fine_tune      | 3.504219e-02      | 4.102683e-04       |
 
 * You may train a se_a model in the folder `train_sea`.
 
