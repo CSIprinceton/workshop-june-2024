@@ -48,10 +48,10 @@ cd ~/workshop-june-2024/hands-on-sessions/day-2-DW-DPLR/8-deep-potential-long-ra
 
 Then, we start training by submitting the job
 ~~~bash
-apptainer exec --nv [path to the .sif file]/deepmd-kit_2024Q1_cu11.sif dp train input.json
+apptainer exec --nv /home/deepmd23admin/Softwares/deepmd-kit_2024Q1_cu11.sif dp train input.json
 ~~~
-Please make sure that you provide the correct `[path to the .sif file]`. If you are using **Princeton Della** instead of **remote machine**, you can submit a job `sbatch run.train.slurm`.
-The training takes about 20 hours using one GPU. In this tutorial, we don't have time to wait for the results. So, after about 2000 steps of training, you can use `Ctrl+c` to kill the job. Then you can freeze the model using `apptainer exec --nv [path to the .sif file]/deepmd-kit_2024Q1_cu11.sif dp freeze -o model.pb` But this model hasn't been converged, it's just an example. We will provide you with a converged model in the following exercises.
+If you are using **Princeton Della** instead of **remote machine**, you can submit a job `sbatch run.train.slurm`.
+The training takes about 20 hours using one GPU. In this tutorial, we don't have time to wait for the results. So, after about 2000 steps of training, you can use `Ctrl+c` to kill the job. Then you can freeze the model using `apptainer exec --nv /home/deepmd23admin/Softwares/deepmd-kit_2024Q1_cu11.sif dp freeze -o model.pb` But this model hasn't been converged, it's just an example. We will provide you with a converged model in the following exercises.
 
 ## Exercise2： Comparing DP with DPLR
 This example is aimed to illustrate the improvement of DPLR with respect to DP. We will predict the potential energy of the water dimer as a function of the separation distance between the two water molecules using DPLR, and compare it with the results predicted by DP and DFT, which reproduce Fig.5 of [J. Chem. Phys. 156, 124107 (2022)] as shown below.
@@ -68,7 +68,7 @@ The folder `data` has the water-dimer configurations with the separation distanc
 Now, we predict the energy of water dimers using our DPLR model `model.pb` and DeepWannier model `dipole.pb`
 ~~~bash
 cd predict/dplr
-apptainer exec --nv [path to the .sif file]/deepmd-kit_2024Q1_cu11.sif python3 predict.py
+apptainer exec --nv /home/deepmd23admin/Softwares/deepmd-kit_2024Q1_cu11.sif python3 predict.py
 ~~~
 You will get a file `dplr.data.out`. Then, `cat dplr.data.out` you will see the following data
 ~~~
@@ -203,7 +203,7 @@ fix_modify      1 temp real_temp press real_press
 The temperature of the system should be computed from the real atoms. The kinetic contribution in the pressure tensor is also computed from the real atoms. The thermostat is applied to only real atoms. 
 
 
-We can run the simulation by the command `apptainer exec --nv [path to the .sif file]/deepmd-kit_2024Q1_cu11.sif lmp -in in.lammps`. You will get `water.dump` (trajectory file) and `log.lammps`.
+We can run the simulation by the command `apptainer exec --nv /home/deepmd23admin/Softwares/deepmd-kit_2024Q1_cu11.sif lmp -in in.lammps`. You will get `water.dump` (trajectory file) and `log.lammps`.
 
 ## Exercise4： Write input scripts for a more complicated system: NaCl solution
 
