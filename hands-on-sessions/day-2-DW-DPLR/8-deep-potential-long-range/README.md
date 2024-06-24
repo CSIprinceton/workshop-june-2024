@@ -1,5 +1,5 @@
 # Deep Modeling with Long-Range Electrostatic Interactions (DPLR)
-Hands-on sessions - Day 3 - July 2023
+Hands-on sessions - Day 2 - June 2024
 
 ## Overview
 The DP models lack explicit long-range interactions and fail to describe properties that derive from the Coulombic tail of the forces. To overcome this limitation, DPLR extends the DP model by including the long-range electrostatic interactions, which improved the accuracy and predictive power of DP. 
@@ -22,7 +22,7 @@ It is assumed that the participant is familiar with DP after the hands-on sessio
 ## Exercise1： Training
 Now, let's start training a DPLR model. First, go to the training folder
 ~~~bash
-cd ~/workshop-july-2023/hands-on-sessions/day-3/8-deep-potential-long-range/1-train
+cd ~/workshop-june-2024/hands-on-sessions/day-2-DW-DPLR/8-deep-potential-long-range/1-train
 ~~~
 `ls` you will see the files in this folder.`dipole.pb` is the DeepWannier model which is used for predicting the Wannier Centroid. `input.json` is the input training file.  
 
