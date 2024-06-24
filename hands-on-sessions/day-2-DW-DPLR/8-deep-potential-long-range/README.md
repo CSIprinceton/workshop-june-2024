@@ -50,7 +50,7 @@ Then, we start training by submitting the job
 ~~~bash
 apptainer exec --nv [path to the .sif file]/deepmd-kit_2024Q1_cu11.sif dp train input.json
 ~~~
-Please make sure that you provide the correct [path to the .sif file]. If you are using Princeton Della instead of **remote machine**, you can submit a job `sbatch run.train.slurm`.
+Please make sure that you provide the correct `[path to the .sif file]`. If you are using **Princeton Della** instead of **remote machine**, you can submit a job `sbatch run.train.slurm`.
 The training takes about 20 hours using one GPU. In this tutorial, we don't have time to wait for the results. So, after about 2000 steps of training, you can use `Ctrl+c` to kill the job. Then you can freeze the model using `apptainer exec --nv [path to the .sif file]/deepmd-kit_2024Q1_cu11.sif dp freeze -o model.pb` But this model hasn't been converged, it's just an example. We will provide you with a converged model in the following exercises.
 
 ## Exercise2： Comparing DP with DPLR
