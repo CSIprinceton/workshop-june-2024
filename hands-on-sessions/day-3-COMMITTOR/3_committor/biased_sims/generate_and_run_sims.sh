@@ -28,12 +28,6 @@ mkdir B
 sed -i "s/random_seed       42/random_seed       $(($iter+1))/g" input_md_A.dat
 sed -i "s/random_seed       42/random_seed       $(($iter+2))/g" input_md_B.dat
 
-
-# modify model name in plumed.dat
-sed -i "s/model_0_z.pt/model_${iter}_z.pt/g" plumed.dat
-# sed -i "s/model_0_z.pt/model_${iter}_q.pt/g" plumed.dat
-
-
 # cd A + run sim A
 cd A
 taskset --cpu-list $CORE_OFFSET-$(($CORE_OFFSET+$CORE_NUM-1)) plumed ves_md_linearexpansion < ../input_md_A.dat &
