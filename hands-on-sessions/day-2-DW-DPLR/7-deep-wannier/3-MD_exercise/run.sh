@@ -7,8 +7,8 @@
 #SBATCH --time=2:00:00          # total run time limit (HH:MM:SS)
 #SBATCH --job-name="run_md" 
 
-
-dp_image=/home/pinchenx/data.gpfs/2024workshop/deepmd-kit_2024Q1_cu11.sif 
+## change the path to the image file
+dp_image=/tigress/yifanl/workshop-june-2024_images/deepmd-kit_2024Q1_cu11.sif 
 ln -s ../train_energy_model/frozen_model.pb frozen_model.pb
 
 apptainer exec --nv $dp_image lmp -v TEMP 330 -v PRES 1.0 -in in.lammps > thermo.log

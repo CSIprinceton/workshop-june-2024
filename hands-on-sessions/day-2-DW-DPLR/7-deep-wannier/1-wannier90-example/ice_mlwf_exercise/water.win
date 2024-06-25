@@ -2,7 +2,7 @@
 num_wann  = 64
 num_iter  = 100
 write_xyz         = True
-translate_home_cell = True
+translate_home_cell = False
 
 
 guiding_centres = .true.
