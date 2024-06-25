@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # source programs
-source /home/etrizio@iit.local/Bin/dev/plumed2-dev/sourceme.sh
+# source /home/etrizio@iit.local/Bin/dev/plumed2-dev/sourceme.sh
 
 # parse iteration number
 iter=$1
@@ -27,12 +27,6 @@ mkdir B
 # modify seed
 sed -i "s/random_seed       42/random_seed       $(($iter+1))/g" input_md_A.dat
 sed -i "s/random_seed       42/random_seed       $(($iter+2))/g" input_md_B.dat
-
-
-# modify model name in plumed.dat
-sed -i "s/model_0_z.pt/model_${iter}_z.pt/g" plumed.dat
-# sed -i "s/model_0_z.pt/model_${iter}_q.pt/g" plumed.dat
-
 
 # cd A + run sim A
 cd A

@@ -2,7 +2,7 @@
 
 Designed and written by Taehun Lee and Zachary K. Goldsmith, Princeton University
 
-Hands-on sessions - Day 1 - July 11, 2023
+Hands-on sessions - Day 1 - June 25, 2024
 
 Fundamentals of using Quantum-ESPRESSO for plane-wave DFT calculations of extended systems.
 

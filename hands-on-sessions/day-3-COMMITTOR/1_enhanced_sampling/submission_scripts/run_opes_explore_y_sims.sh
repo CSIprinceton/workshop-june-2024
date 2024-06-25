@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # source programs
-source /home/etrizio@iit.local/Bin/dev/plumed2-dev/sourceme.sh
+# source /home/etrizio@iit.local/Bin/dev/plumed2-dev/sourceme.sh
 
 # define core offset and number
 CORE_NUM=1
