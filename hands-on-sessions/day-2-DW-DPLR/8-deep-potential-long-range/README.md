@@ -50,7 +50,7 @@ Then, we start training by submitting the job
 ~~~bash
 apptainer exec --nv /home/deepmd23admin/Softwares/deepmd-kit_2024Q1_cu11.sif dp train input.json
 ~~~
-If you are using **Princeton Della** instead of **remote machine**, you can submit a job `sbatch run.train.slurm`.
+If you are using **Princeton Della** instead of **virtual machine**, you can submit a job `sbatch run.train.slurm`.
 The training takes about 20 hours using one GPU. In this tutorial, we don't have time to wait for the results. So, after about 2000 steps of training, you can use `Ctrl+c` to kill the job. Then you can freeze the model using `apptainer exec --nv /home/deepmd23admin/Softwares/deepmd-kit_2024Q1_cu11.sif dp freeze -o model.pb` But this model hasn't been converged, it's just an example. We will provide you with a converged model in the following exercises.
 
 ## Exercise2： Comparing DP with DPLR
@@ -66,10 +66,22 @@ cd ~/workshop-june-2024/hands-on-sessions/day-2-DW-DPLR/8-deep-potential-long-ra
 The folder `data` has the water-dimer configurations with the separation distance between the two water molecules from 2.69 to 10.00 Å. It also has the DFT calculation results. 
 
 Now, we predict the energy of water dimers using our DPLR model `model.pb` and DeepWannier model `dipole.pb`
+
+If you are on **virtual machine** do this
 ~~~bash
 cd predict/dplr
-apptainer exec --nv /home/deepmd23admin/Softwares/deepmd-kit_2024Q1_cu11.sif python3 predict.py
+conda activate dp
+python3 predict.py
 ~~~
+
+If you are on **Princeton Della** do this
+~~~bash
+cd predict/dplr
+module load anaconda3/2022.10
+conda activate /tigress/yifanl/usr/licensed/anaconda3/2021.11/envs/dp-v2.2.7
+python3 predict.py
+~~~
+
 You will get a file `dplr.data.out`. Then, `cat dplr.data.out` you will see the following data
 ~~~
 #   dist  DPLR_e    DFT_e
