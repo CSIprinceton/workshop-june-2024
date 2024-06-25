@@ -1,3 +1,8 @@
+'''
+Della Users: 
+conda activate /scratch/gpfs/pinchenx/envs/dp-dev
+'''
+
 import numpy as np
 import ase 
 import ase.io
@@ -20,12 +25,12 @@ liq_configs = ase.io.read( './liquid_dipole/water.lammpstrj',format = 'lammps-du
 print('loaded {} liquid configurations'.format(len(liq_configs) ))
 
 ## Evaluate Deep Dipole Model
-liq_d_vec = get_WC_O_distance(liq_configs, dipole_model)
-liq_d_vec = np.linalg.norm(liq_d_vec, axis=-1).flatten()
+liq_d_all = get_WC_O_distance(liq_configs, dipole_model)
+liq_d_all = np.linalg.norm(liq_d_all, axis=-1).flatten()
 
 #### Plot Histogram
 fig, ax = plt.subplots( figsize = (4, 3))
-ax.hist(liq_d_vec, bins=50, alpha = 0.5, label=r'$d(liq)={:.2f}A$'.format(liq_d_vec.mean()))
+ax.hist(liq_d_all, bins=50, alpha = 0.5, label=r'$d(liq)={:.2f}A$'.format(liq_d_all.mean()))
 ax.set_xlabel(r'$d$ [Angstrom]')
 ax.set_ylabel('Histogram')
 ax.legend()
