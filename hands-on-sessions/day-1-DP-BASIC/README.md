@@ -26,7 +26,7 @@ apptainer exec --nv deepmd-kit_2024Q1_cu11.sif dp -h
 
 ### QE
 ```
-apptainer exec --nv quantum_espresso_qe-7.1.sif
+apptainer exec --nv quantum_espresso_qe-7.1.sif pw.x
 ```
 
 ### ASE
