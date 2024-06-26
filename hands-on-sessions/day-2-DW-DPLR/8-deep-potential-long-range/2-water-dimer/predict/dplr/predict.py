@@ -18,7 +18,7 @@ for ii in data_subdir:
     all_res = []
     for jj in dist:
         basename = os.path.basename(jj)
-        dist_v = float(basename.split('.')[1] + '.' + basename.split('.')[2])
+        dist_v = np.array([float(basename.split('.')[1] + '.' + basename.split('.')[2])])
         system = dpdata.LabeledSystem(os.path.join(jj, '00', 'OUTCAR'))
         if system.get_nframes() == 0:
             print(f'# failed system {jj}')

@@ -107,7 +107,7 @@ DEEPMD INFO    Force  RMSE        : 3.504219e-02 eV/A  # <- weighted error on th
 | -------------- | ----------------- | ------------------ |
 | se_a           | 3.700330e-02      | 3.884332e-04       |
 | se_a (10_000)* | 1.160228e-01      | 1.668701e-03       |
-| zero_shot      | 1.688308e-02      | 3.071374e-03       |
+| zero_shot      | 1.688308e-01      | 3.071374e-03       |
 | fine_tune      | 3.504219e-02      | 4.102683e-04       |
 
 * You may train a se_a model in the folder `train_sea`.
