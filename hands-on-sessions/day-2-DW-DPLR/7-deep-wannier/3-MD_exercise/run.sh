@@ -7,8 +7,12 @@
 #SBATCH --time=2:00:00          # total run time limit (HH:MM:SS)
 #SBATCH --job-name="run_md" 
 
-## change the path to the image file
-dp_image=/tigress/yifanl/workshop-june-2024_images/deepmd-kit_2024Q1_cu11.sif 
+## For della:
+#dp_image=/tigress/yifanl/workshop-june-2024_images/deepmd-kit_2024Q1_cu11.sif 
+## For Azure:
+dp_image=/home/deepmd23admin/Softwares/deepmd-kit_2024Q1_cu11.sif
+
+## the deep dipole model
 ln -s ../train_energy_model/frozen_model.pb frozen_model.pb
 
 apptainer exec --nv $dp_image lmp -v TEMP 330 -v PRES 1.0 -in in.lammps > thermo.log

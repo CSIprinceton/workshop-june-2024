@@ -7,6 +7,8 @@
 #SBATCH --time=1:00:00          # total run time limit (HH:MM:SS)
 #SBATCH --job-name="train" 
 
-## change the path to the image file
-dp_image=/tigress/yifanl/workshop-june-2024_images/deepmd-kit_2024Q1_cu11.sif 
+## For della:
+#dp_image=/tigress/yifanl/workshop-june-2024_images/deepmd-kit_2024Q1_cu11.sif 
+## For Azure:
+dp_image=/home/deepmd23admin/Softwares/deepmd-kit_2024Q1_cu11.sif
 apptainer exec --nv $dp_image dp train input.json
