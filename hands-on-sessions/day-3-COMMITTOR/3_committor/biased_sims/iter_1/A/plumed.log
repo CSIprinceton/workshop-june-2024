@@ -332,10 +332,10 @@ PLUMED:   [4] Trizio and Parrinello, J. Phys. Chem. Lett. 12, 8621-8626 (2021)
 PLUMED: Please read and cite where appropriate!
 PLUMED: Finished setup
 PLUMED:                                               Cycles        Total      Average      Minimum      Maximum
-PLUMED:                                                    1  1927.324656  1927.324656  1927.324656  1927.324656
-PLUMED: 1 Prepare dependencies                       5000001     3.130793     0.000001     0.000000     0.000062
-PLUMED: 2 Sharing data                               5000001     4.166206     0.000001     0.000001     0.000066
-PLUMED: 3 Waiting for data                           5000001     1.156770     0.000000     0.000000     0.000069
-PLUMED: 4 Calculating (forward loop)                 5000001  1882.998988     0.000377     0.000367     0.015889
-PLUMED: 5 Applying (backward loop)                   5000001    20.241334     0.000004     0.000004     0.000104
-PLUMED: 6 Update                                     5000001     1.474591     0.000000     0.000000     0.000471
+PLUMED:                                                    1  1911.980948  1911.980948  1911.980948  1911.980948
+PLUMED: 1 Prepare dependencies                       5000001     3.161502     0.000001     0.000000     0.000077
+PLUMED: 2 Sharing data                               5000001     3.999670     0.000001     0.000001     0.000084
+PLUMED: 3 Waiting for data                           5000001     1.141471     0.000000     0.000000     0.000071
+PLUMED: 4 Calculating (forward loop)                 5000001  1867.723115     0.000374     0.000362     0.015817
+PLUMED: 5 Applying (backward loop)                   5000001    20.465232     0.000004     0.000004     0.000101
+PLUMED: 6 Update                                     5000001     1.528192     0.000000     0.000000     0.000047
