@@ -12,9 +12,9 @@ prepares a necessary environment.
 $ apptainer pull docker://ghcr.io/deepmodeling/deepmd-kit:2024Q1_cu11
 ```
 
-Also, we need download the latest pretrained DPA2 model.
+Also, we need download the latest pretrained DPA2 model through the link below.
 ```
-$ wget https://github.com/deepmodeling/deepmd-kit/pkgs/container/deepmd-kit/225322173?tag=2024Q1_cu11
+https://www.dropbox.com/scl/fo/6sylxjzcpg7cir9zvkuus/ADHCwn9cK6a1PirjUDVA-K0?rlkey=o54wm11qfh8e5h3mr4z2w4eyg&dl=0
 ```
 
 # Dataset
